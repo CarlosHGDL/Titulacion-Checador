@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- CATEGORIAS -->
+        <record model="ir.module.category" id="user_checker_clock">
+            <field name="description">Te ayuda a manejar tus necesidades en el registro de asistencia.</field>
+            <field name="name">Usuarios</field>
+            <field name="sequence">7</field>
+        </record>
+        
+        <!-- ROLES -->
+        <record id="checker_clock_admin" model="res.groups">
+            <field name="name">Administrador</field>
+            <field name="category_id" ref="user_checker_clock"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+        <record id="checker_clock_coordinator" model="res.groups">
+            <field name="name">Coordinador</field>
+            <field name="category_id" ref="user_checker_clock"/>
+            <field name="implied_ids" eval="[(4, ref('base.group_user'))]"/>
+        </record>
+
+    </data>
+</odoo>

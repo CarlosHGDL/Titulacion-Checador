@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--*************************************Tree*************************************-->
+		<record model='ir.ui.view' id='clock_checker_tree'>
+			<field name='name'>clock.checker.tree</field>
+			<field name='model'>clock.checker</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name="teacher_id"/>
+					<field name="date_Time"/>
+					<field name="message"/>
+				</tree>
+			</field>
+		</record>
+		<!--************************************from************************************-->
+		<record model="ir.ui.view" id="clock_checker_form">
+			<field name="name">clock.checker.form</field>
+			<field name="model">clock.checker</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<!-- <button name="create_invoice" type="object" string="puchame" class="oe_highlight"/> -->
+					</header>
+					<sheet>
+						<div class="row">
+							<div>
+								<table class="table table-bordered" style="table-layout: fixed" id="hash_config_table">
+									<thead style="display: table-row-group">
+										<tr attrs="{'invisible':[('name','=',False)]}">
+											<th class="text-center" style="width: 30%" scope="col">
+												<field name="name" attrs="{'readonly':[('name','!=',False)]}"/>
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr attrs="{'invisible':[('teacher_id','=',False)]}">
+											<td class="text-center">
+												Docente: <field name="teacher_id" attrs="{'readonly':[('teacher_id','!=',False)]}" options="{'no_open': True}"/>
+												<field name="schedule_class_id" invisible="1"/>
+											</td>
+										</tr>
+										<tr attrs="{'invisible':[('schedule_class_id','!=',False)]}">
+											<td class="text-center" >
+												Matrícula: <field name="tuition"/>
+											</td>
+										</tr>
+										<tr attrs="{'invisible':[('message','=',False)]}">
+											<td class="text-center">
+												<field name="message"  attrs="{'readonly':[('message','!=',False)]}" />
+											</td>
+										</tr>
+										<tr attrs="{'invisible':[('date_Time','=',False)]}">
+											<td class="text-center">
+												<field name="date_Time"  attrs="{'readonly':[('date_Time','!=',False)]}" />
+											</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>
+						</div>
+					</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+		
+		<record id="menu_register_checker" model="website.menu">
+			<field name="name">Registro</field>
+			<field name="url">/teacher/form</field>
+			<field name="parent_id" ref="website.main_menu"/>
+			<field name="sequence" type="int">55</field>
+		</record>
+		<!--***********************************Accion***********************************-->
+		<record id="action_clock_checker" model="ir.actions.act_window">
+			<field name="name">Gestion de registros</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">clock.checker</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Aqui se registan las asistencias
+              </p>
+            </field>
+		</record>
+		<!--**********************************menuitem**********************************-->
+		<menuitem id="clock_checker_menu_principal" name="Registros" web_icon="checker_clock,static/description/registro.png"/>
+		<menuitem id="clock_checker_menu" name="Gestion de registros" parent="clock_checker_menu_principal" action="action_clock_checker"/>
+	</data>
+</odoo>

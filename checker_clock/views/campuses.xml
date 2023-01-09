@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--*************************************Tree*************************************-->
+		<record model='ir.ui.view' id='campuses_class_tree'>
+			<field name='name'>campuses.class.tree</field>
+			<field name='model'>campuses.class</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name="name"/>
+					<field name="code"/>
+				</tree>
+			</field>
+		</record>
+		<!--************************************from************************************-->
+		<record model="ir.ui.view" id="campuses_class_form">
+			<field name="name">campuses.class.form</field>
+			<field name="model">campuses.class</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<!-- <button name="create_invoice" type="object" string="puchame" class="oe_highlight"/> -->
+					</header>
+					<sheet>
+                        <div colspan="2" class="oe_title">
+							<h1>
+								<field name="name"/>
+							</h1>
+						</div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+                            </group>
+                        </group>
+                        <notebook>
+							<page string="Aulas" name="page_classroom">
+								<field name="classroom_id">
+									<tree string="Aulas"  editable="bottom" create="false">
+										<field name="name" readonly ="1"/>
+										<field name="code" readonly ="1"/>
+										<field name="campuses_id" invisible="1"/>
+									</tree>
+								</field>
+							</page>
+						</notebook>
+					</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+		<!--***********************************Accion***********************************-->
+		<record id="action_campuses_class" model="ir.actions.act_window">
+			<field name="name">Plantel</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">campuses.class</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Aqui se registan los Planteles
+              </p>
+            </field>
+		</record>
+		<!--**********************************menuitem**********************************-->
+		<menuitem id="campuses_class_menu_principal" name="Planteles" web_icon="checker_clock,static/description/plantel.png"/>
+		<menuitem id="campuses_class_menu" name="Gestion de Planteles" parent="campuses_class_menu_principal" action="action_campuses_class"/>
+	</data>
+</odoo>

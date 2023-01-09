@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--*************************************Tree*************************************-->
+		<record model='ir.ui.view' id='justification_catalog_tree'>
+			<field name='name'>justification.catalog.tree</field>
+			<field name='model'>justification.catalog</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!--************************************from************************************-->
+		<record model="ir.ui.view" id="justification_catalog_form">
+			<field name="name">justification.catalog.form</field>
+			<field name="model">justification.catalog</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+                        <div colspan="2" class="oe_title">
+							<h1>
+								<field name="name"/>
+							</h1>
+						</div>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--***********************************Accion***********************************-->
+		<record id="action_justification_catalog" model="ir.actions.act_window">
+			<field name="name">Gestion de Justificaciones</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">justification.catalog</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Aqui se registan las justificaciones para el registro de los docentes
+              </p>
+            </field>
+		</record>
+		<!--**********************************menuitem**********************************-->
+        <menuitem id="justification_catalog_menu" name="Justificaciones" parent="checker_clock.catalog_menu_principal" action="action_justification_catalog"/>
+	</data>
+</odoo>

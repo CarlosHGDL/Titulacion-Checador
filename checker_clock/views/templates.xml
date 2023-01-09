@@ -1,0 +1,123 @@
+<odoo>
+    <data>
+
+        <template id="register_checker" name="clock checker Form">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <form action="/teacher/form/submit">
+                                <div class="form-group">
+                                    <label for="name">Matricula:</label>
+                                    <input type="text" class="form-control" name="tuition" id="tuition" required="true" /> 
+                                </div>
+                                <t t-if="classroom_class">
+                                    <label for="name">Aula:</label>
+                                    <select class="form-control" id="aula" name="aula">
+                                        <option><t t-esc="classroom_class"/></option>
+                                    </select>
+                                </t>
+                                <button type="submit" class="btn btn-primary">Checar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+<!-- ******************************************************************************** -->
+        <template id="tmp_customer_form_success" name="Formulario Enviado">
+            <t t-call="website.layout">
+                <div class="container">
+                    <div class="col-md-12">
+                        <h1 class="text-center">Registro exitoso</h1>
+                    </div>
+                    <div class="col-md-12"></div>
+                    <div class="col-md-12">
+                        <table class="table table-striped table-bordered table-hover table-condensed">
+                            <t t-if="line.schedule_class_id">
+                                <tr>
+                                    <th>Materia</th>
+                                    <th>horario</th>
+                                </tr>
+                            </t>
+                            <t t-else="">
+                                <tr>
+                                    <th>Mensage</th>
+                                </tr>
+                            </t>
+                            <t t-if="line.schedule_class_id">
+                                <tr>
+                                    <td><t t-esc="line.schedule_class_id.subject_id.name"/></td>
+                                    <td><t t-esc="line.float_a_time(line.schedule_class_id.hour_entry)"/>-<t t-esc="line.float_a_time(line.schedule_class_id.hour_exit)"/></td>
+                                </tr>
+                            </t>
+                            <t t-else="">
+                                <tr>
+                                    <td>Favor de ir a prefectura o coordinación a solicitar la justificación</td>
+                                </tr>
+                            </t>
+                        </table>
+                    </div>
+                    <div class="col-md-12"></div>
+                </div>
+            </t>
+        </template>
+
+<!-- ******************************************************************************** -->
+        <template id="tmp_customer_form_fail" name="Formulario Enviado">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <form action="/teacher/form/fail">
+                                <div class="col-md-12">
+                                    <h1 class="text-center"><t t-esc="mensage"/></h1>
+                                </div>
+                                <div class="col-md-12"></div>
+                                <div t-attf-class="form-group #{error and 'priority' in error and 'has-error' or ''}">
+                                    <label class="control-label" for="priority">Opciones:</label>
+                                    <select class="form-control" id="option" name="option">
+                                        <t t-if="flag">
+                                            <option value="attempt">Intentar de nuevo</option>
+                                        </t>
+                                        <t t-else="">
+                                            <option value="attempt">Intentar de nuevo</option>
+                                            <option value="create">Crear registro</option>
+		                                </t>
+                                    </select>
+                                    <t t-if="teacher_id">
+                                        <label for="name">Matricula:</label>
+                                        <select class="form-control" id="tuition" name="tuition">
+                                            <option><t t-esc="teacher_id.tuition"/></option>
+                                        </select>
+                                    </t>
+                                    <t t-if="aula">
+                                        <label for="name">Aula:</label>
+                                        <select class="form-control" id="aula" name="aula">
+                                            <option><t t-esc="aula"/></option>
+                                        </select>
+                                    </t>
+                                </div>
+                                <button type="submit" class="btn btn-primary">Aceptar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+        <template id="template_qr_error" name="Formulario Enviado">
+            <t t-call="website.layout">
+                <div id="wrap">
+                    <div class="container">
+                        <div class="col-md-12">
+                            <div class="alert alert-info">
+                                Favor de usar el Codigo QR para ingerar.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </t>
+        </template>
+    </data>
+</odoo>

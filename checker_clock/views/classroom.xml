@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--*************************************Tree*************************************-->
+		<record model='ir.ui.view' id='classroom_class_tree'>
+			<field name='name'>classroom.class.tree</field>
+			<field name='model'>classroom.class</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name="name"/>
+					<field name="code"/>
+					<field name="campuses_id"/>
+				</tree>
+			</field>
+		</record>
+		<!--************************************from************************************-->
+		<record model="ir.ui.view" id="classroom_class_form">
+			<field name="name">classroom.class.form</field>
+			<field name="model">classroom.class</field>
+			<field name="arch" type="xml">
+				<form>
+					<!-- <header>
+						<button name="generate_url" type="object" string="puchame" class="oe_highlight"/>
+					</header> -->
+					<sheet>
+                        <div colspan="2" class="oe_title">
+							<h1>
+								<field name="name"/>
+							</h1>
+						</div>
+                        <group>
+                            <group>
+                                <field name="code"/>
+								<field name="url" groups='checker_clock.checker_clock_admin'/>
+                            </group>
+                            <group>
+                                <field name="campuses_id"/>
+                            </group>
+                        </group>
+					</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+		<!--***********************************Accion***********************************-->
+		<record id="action_classroom_class" model="ir.actions.act_window">
+			<field name="name">Gestion de Aulas</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">classroom.class</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Aqui se registan las aulas
+              </p>
+            </field>
+		</record>
+		<!--**********************************menuitem**********************************-->
+		<menuitem id="classroom_class_menu" name="Gestion de Aula" parent="checker_clock.campuses_class_menu_principal" action="action_classroom_class"/>
+	</data>
+</odoo>

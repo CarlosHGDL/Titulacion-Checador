@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="paperformat_inasistencias" model="report.paperformat">
+            <field name="name">Papel Reporte Inasistencias</field>
+            <field name="default" eval="True"/>
+            <field name="format">Letter</field>
+            <field name="orientation">Landscape</field>
+            <field name="margin_top">0</field>
+            <field name="margin_bottom">0</field>
+            <field name="margin_left">0</field>
+            <field name="margin_right">0</field>
+            <field name="header_line" eval="False"/>
+            <field name="dpi">96</field>
+        </record>
+
+        <template id="report_reporte_inasistencias">
+            <t t-call="web.basic_layout">
+                <t t-set="o" t-value="o.with_context(lang=lang)" />
+                <div class="page" style="font-size: 10px; color:#63636b">
+                    <div class="page">
+                        <div class="text-center">
+                            logo
+                        </div>
+                        <div class="text-center">
+                            REPORTE DE INASISTENCIAS, RETARDOS Y SUPLECIAS DE PROFESORES
+                        </div>
+                        <table class="table table-sm o_main_table" name="licenciatura">
+                            <tbody class="invoice_tbody">
+                                <tr>
+                                    <td class="text-left">
+                                        LICENCIATURA EN: INGENIERIA DE SOFWARE
+                                    </td>
+                                    <td class="text-right">
+                                        fecha x right left
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table style="border: 1px solid black; border-collapse: collapse;" name="reporte_lineas">
+                            <thead>
+                                <tr style="border: 1px solid black; border-collapse: collapse;">
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_No" class="text-center" rowspan="3"><span>No.</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_nombre_del_profesor" class="text-center" rowspan="3"><span>NOMBRE DEL PROFESOR</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_faltas" class="text-center" colspan="7"><span>FALTAS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_retardos" class="text-center" colspan="6"><span>RETARDOS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_total_hora" class="text-center" rowspan="3"><span>TOTAL HORAS A DESCONTAR</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_supllencias" class="text-center" rowspan="3"><span>SUPLENCIAS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_clases_no_impartidas" class="text-center" rowspan="3"><span>CLASES NO IMPARTIDAS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_observaciones" class="text-center" rowspan="3"><span>OBSERBACIONES</span></td>
+                                </tr>
+                                <tr style="border: 1px solid black; border-collapse: collapse;">
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_horario" class="text-center" colspan="3"><span>HORARIO</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_t_horar" class="text-center" rowspan="2"><span>TOTAL DE HORAS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_justificadas" class="text-center" colspan="2"><span>JUSTIFICADAS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_horas_descontar" class="text-center" rowspan="2"><span>HORAS DESCOTAR</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_horario" class="text-center" colspan="3"><span>HORARIO</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_total" class="text-center" rowspan="2"><span>TOTAL</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_injustificados" class="text-center" rowspan="2"><span>INJUSTIFICADOS</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_horas_a_descontar" class="text-center" rowspan="2"><span>HORAS A DESCONTAR</span></td>
+                                </tr>
+                                <tr style="border: 1px solid black; border-collapse: collapse;">
+                                    <!-- <td name="th_No" class="text-center"><span>x</span></td>
+                                    <td name="th_No" class="text-center"><span>x</span></td> -->
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_matutino" class="text-center"><span>MATUTINO</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_vespertino" class="text-center"><span>VESPERTINO</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_nocturno" class="text-center"><span>NOCTURNO</span></td>
+                                    <!-- <td name="th_No" class="text-center"><span>x</span></td> -->
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_imms" class="text-center"><span>x</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_otros" class="text-center"><span>x</span></td>
+                                    <!-- <td name="th_No" class="text-center"><span>x</span></td> -->
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_r_matutino" class="text-center"><span>MATUTINO</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_r_vespertino" class="text-center"><span>VESPERTINO</span></td>
+                                    <td style="border: 1px solid black; border-collapse: collapse;" name="th_r_nocturno" class="text-center"><span>NOCTURNO</span></td>
+                                    <!-- <td name="th_No" class="text-center"><span>x</span></td>
+                                    <td name="th_No" class="text-center"><span>x</span></td>
+                                    <td name="th_No" class="text-center"><span>x</span></td> -->
+                                    <!-- <td name="th_No" class="text-center"><span>x</span></td>
+                                    <td name="th_No" class="text-center"><span>x</span></td>
+                                    <td name="th_No" class="text-center"><span>x</span></td> -->
+                                </tr>
+                                <t t-set="numero" t-value="0"/>
+                                <t t-set="total_line" t-value="0"/>
+                                <t t-set="falta_total" t-value="0"/>
+                                <t t-set="falta_imss" t-value="0"/>
+                                <t t-set="falta_otro" t-value="0"/>
+                                <t t-set="retardo_total" t-value="0"/>
+                                <t t-set="total_total" t-value="0"/>
+                                <t t-set="total_suplencia" t-value="0"/>
+                                <t t-set="docentes" t-value="o.buscar_docentes()"/>
+                                <t t-foreach="docentes" t-as="line">
+                                    <t t-set="numero" t-value="numero + 1"/>
+                                    <t t-set="total_line" t-value="o.buscar_faltas(line) + o.faltas_x_retardos(line)"/>
+                                    <t t-set="falta_total" t-value="falta_total + o.buscar_faltas(line)"/>
+                                    <t t-set="falta_imss" t-value="falta_imss + o.buscar_Justificado(line)"/>
+                                    <t t-set="falta_otro" t-value="falta_otro + o.buscar_otro(line)"/>
+                                    <t t-set="retardo_total" t-value="retardo_total + o.buscar_retardos(line)"/>
+                                    <t t-set="retardo_faltas_x_retardos" t-value="retardo_faltas_x_retardos + o.faltas_x_retardos(line)"/>
+                                    <t t-set="total_suplencia" t-value="total_suplencia + o.buscar_suplencia(line)"/>
+                                    
+                                    <t t-set="total_total" t-value="total_total + total_line"/>
+                                    <tr t-att-class="'bg-200 font-weight-bold'">
+                                        <td><span t-esc="numero" t-options="{'widget': 'text'}"/></td>
+                                        <td><span t-field="line.name" t-options="{'widget': 'text'}"/></td>
+                                        <td>/</td>
+                                        <td><span/></td>
+                                        <td><span/></td>
+                                        <td><span t-field="o.buscar_faltas(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span t-field="o.buscar_Justificado(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span t-field="o.buscar_otro(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span t-field="o.buscar_faltas(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span/></td>
+                                        <td><span/></td>
+                                        <td><span/></td>
+                                        <td><span t-field="o.buscar_retardos(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span/></td>
+                                        <td>0</td>
+                                        <!-- <td><span t-field="o.faltas_x_retardos(line)"/></td> -->
+                                        <td><span t-esc="total_line"/></td>
+                                        <td><span t-field="o.buscar_suplencia(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span t-field="o.buscar_faltas(line)" t-options="{'widget': 'text'}"/></td>
+                                        <td><span/></td>
+                                    </tr>
+                                </t>
+                                <tr t-att-class="'bg-200 font-weight-bold'">
+                                    <td><span/></td>
+                                    <td>SUMAS</td>
+                                    <td><span/></td>
+                                    <td><span/></td>
+                                    <td><span/></td>
+                                    <td><span t-esc="falta_total" t-options="{'widget': 'text'}"/></td>
+                                    <td><span t-esc="falta_imss" t-options="{'widget': 'text'}"/></td>
+                                    <td><span t-esc="falta_otro" t-options="{'widget': 'text'}"/></td>
+                                    <td><span t-esc="falta_total" t-options="{'widget': 'text'}"/></td>
+                                    <td><span/></td>
+                                    <td><span/></td>
+                                    <td><span/></td>
+                                    <td><span t-esc="retardo_total" t-options="{'widget': 'text'}"/></td>
+                                    <td><span/></td>
+                                    <td><span t-esc="retardo_faltas_x_retardos" t-options="{'widget': 'text'}"/></td>
+                                    <td><span t-esc="total_total" t-options="{'widget': 'text'}"/></td>
+                                    <td><span t-esc="total_suplencia" t-options="{'widget': 'text'}"/></td>
+                                    <td><span t-esc="total_total" t-options="{'widget': 'text'}"/></td>
+                                    <td><span/></td>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+            </t>
+        </template>
+
+        <template id="template_reporte_inasistencias">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <t t-call="checker_clock.report_reporte_inasistencias" t-lang="o.teacher_ids.lang"/>
+                </t>
+            </t>
+        </template>
+
+        
+        <record id="account_reporte_inasistencias" model="ir.actions.report">
+            <field name="name">Reporte </field>
+            <field name="model">reporte.inasistencias</field>
+            <field name="report_type">qweb-pdf</field>
+            <field name="report_name">checker_clock.template_reporte_inasistencias</field>
+            <field name="report_file">checker_clock.template_reporte_inasistencias</field>
+            <field name="print_report_name">('Reporte Inasistencias')</field>
+            <field name="attachment">('Reporte Inasistencias.pdf')</field>
+            <field name="binding_model_id" ref="model_reporte_inasistencias"/>
+            <field name="binding_type">report</field>
+        </record>
+    </data>
+</odoo>

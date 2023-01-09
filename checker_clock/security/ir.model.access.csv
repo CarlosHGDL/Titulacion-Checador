@@ -1,0 +1,21 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_clock_checker_admin,clock.checker admin,model_clock_checker,checker_clock.checker_clock_admin,1,1,1,1
+access_schedule_class_admin,schedule.class admin,model_schedule_class,checker_clock.checker_clock_admin,1,1,1,1
+access_subject_class_admin,subject.class admin,model_subject_class,checker_clock.checker_clock_admin,1,1,1,1
+access_res_partner_admin,res.partner admin,model_res_partner,checker_clock.checker_clock_admin,1,1,1,1
+access_campuses_class_admin,campuses.class admin,model_campuses_class,checker_clock.checker_clock_admin,1,1,1,1
+access_classroom_class_admin,classroom.class admin,model_classroom_class,checker_clock.checker_clock_admin,1,1,1,1
+access_colony_catalog_admin,colony.catalog admin,model_colony_catalog,checker_clock.checker_clock_admin,1,1,1,1
+access_school_period_admin,school.period admin,model_school_period,checker_clock.checker_clock_admin,1,1,1,1
+access_justification_catalog_admin,justification.catalog admin,model_justification_catalog,checker_clock.checker_clock_admin,1,1,1,1
+access_reporte_inasistencias_admin,reporte.inasistencias admin,model_reporte_inasistencias,checker_clock.checker_clock_admin,1,1,1,1
+
+access_clock_checker_coordinator,clock.checker coordinator,model_clock_checker,,1,1,1,0
+access_schedule_class_coordinator,schedule.class coordinator,model_schedule_class,,1,1,1,1
+access_subject_class_coordinator,subject.class coordinator,model_subject_class,,1,1,1,1
+access_res_partner_coordinator,res.partner coordinator,model_res_partner,,1,1,1,0
+access_campuses_class_coordinator,campuses.class coordinator,model_campuses_class,,1,1,1,1
+access_classroom_class_coordinator,classroom.class coordinator,model_classroom_class,,1,1,1,1
+access_colony_catalog_coordinator,colony.catalog coordinator,model_colony_catalog,,1,1,1,1
+access_school_period_coordinator,school.period coordinator,model_school_period,,1,1,1,1
+access_justification_catalog_coordinator,justification.catalog coordinator,model_justification_catalog,,1,1,1,1

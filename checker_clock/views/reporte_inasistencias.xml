@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--************************************from************************************-->
+		<record model="ir.ui.view" id="reporte_inasistencias_form">
+			<field name="name">reporte.inasistencias.form</field>
+			<field name="model">reporte.inasistencias</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+							<p>Seleccionamos el periodo de la consulta</p>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="fecha_de" placeholder="DD-MM-YYYY" widget="date" options="{'format': 'dd/m/YYYY'}"/>
+                            </group>
+                            <group>
+                                <field name="fecha_asta" placeholder="DD-MM-YYYY" widget="date" options="{'format': 'dd/m/YYYY'}"/>
+                            </group>
+                        </group>
+                        <div class="alert alert-info" role="alert" style="margin-bottom:0px;">
+							<p>De requerir algunos docente selecciónelo aquí</p>
+                        </div>
+                        <group>
+                            <field name="teacher_ids" widget="many2many_tags" nolabel="1"/>
+                        </group>
+                        <group>
+                            <group>
+                               <button name="print_reporte" type="object" string="puchame" class="oe_highlight"/>
+                            </group>
+                        </group>
+					</sheet>
+				</form>
+			</field>
+		</record>
+		<!--***********************************Accion***********************************-->
+		<record id="action_reporte_inasistencias" model="ir.actions.act_window">
+			<field name="name">Reporte de inasistencias</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">reporte.inasistencias</field>
+			<field name="view_mode">form</field>
+            <field name="view_id" ref="reporte_inasistencias_form"/>
+            <field name="target">new</field>
+            <field name="binding_model_id" ref="model_reporte_inasistencias" />
+            <field name="binding_type">report</field>
+		</record>
+		<!--**********************************menuitem**********************************-->
+		<menuitem id="reporte_inasistencias_menu" name="Reporte de inasistencias" parent="schedule_class_menu_principal" action="action_reporte_inasistencias" sequence="11"/>
+    </data>
+</odoo>

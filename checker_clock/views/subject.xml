@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<!--*************************************Tree*************************************-->
+		<record model='ir.ui.view' id='subject_class_tree'>
+			<field name='name'>subject.class.tree</field>
+			<field name='model'>subject.class</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name="name"/>
+					<field name="code"/>
+				</tree>
+			</field>
+		</record>
+		<!--*************************************periodo*************************************-->
+		<record model='ir.ui.view' id='school_period_tree'>
+			<field name='name'>school.period.tree</field>
+			<field name='model'>school.period</field>
+			<field name='arch' type='xml'>
+				<tree>
+					<field name="name"/>
+				</tree>
+			</field>
+		</record>
+		<!--************************************from************************************-->
+		<record model="ir.ui.view" id="subject_class_form">
+			<field name="name">subject.class.form</field>
+			<field name="model">subject.class</field>
+			<field name="arch" type="xml">
+				<form>
+					<header>
+						<!-- <button name="create_invoice" type="object" string="puchame" class="oe_highlight"/> -->
+					</header>
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name"/>
+							</h1>
+						</div>
+						<group>
+							<group>
+								<field name="code"/>
+							</group>
+							<group>
+								<field name="school_period_id"/>
+							</group>
+						</group>
+					</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+		<!--************************************periodo************************************-->
+		<record model="ir.ui.view" id="school_period_form">
+			<field name="name">school.period.form</field>
+			<field name="model">school.period</field>
+			<field name="arch" type="xml">
+				<form>
+					<sheet>
+						<div class="oe_title">
+							<h1>
+								<field name="name"/>
+							</h1>
+						</div>
+					</sheet>
+                    <div class="oe_chatter">
+                        <field name="message_follower_ids"/>
+                        <field name="activity_ids"/>
+                        <field name="message_ids"/>
+                    </div>
+				</form>
+			</field>
+		</record>
+		<!--***********************************Accion***********************************-->
+		<record id="action_subject_class" model="ir.actions.act_window">
+			<field name="name">Gestion de materias</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">subject.class</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Aqui se registan las materias
+              </p>
+            </field>
+		</record>
+		<!--***********************************periodo***********************************-->
+		<record id="action_school_period" model="ir.actions.act_window">
+			<field name="name">Gestion de periodos</field>
+            <field name="type">ir.actions.act_window</field>
+			<field name="res_model">school.period</field>
+			<field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Aqui se registan los periodos
+              </p>
+            </field>
+		</record>
+		<!--**********************************menuitem**********************************-->
+		<menuitem id="subject_class_menu_principal" name="Materias" web_icon="checker_clock,static/description/materia.png"/>
+		<menuitem id="subject_class_menu" name="Gestion de materias" parent="subject_class_menu_principal" action="action_subject_class"/>
+		<menuitem id="school_period_menu" name="Periodos" parent="catalog_menu_principal" action="action_school_period"/>
+	</data>
+</odoo>
